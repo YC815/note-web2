@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import db from '../data/note.json'
 
 const HomePage = () => {
   const [textAreas, setTextAreas] = useState([
     { id: 1, content: "" }
   ]);
 
-  useEffect(() => {
-    axios.get("/data/note.json").then(res => {
-      setTextAreas(res.data.note);
-    });
-  }, []);
+  // console.log(db.note)
+
+  // useEffect(() => {
+    
+  //   axios.get("/data/note.json").then(res => {
+  //     setTextAreas(res.data.note);
+  //   });
+  // }, []);
 
   const addTextArea = () => {
     setTextAreas([...textAreas, { id: textAreas.length + 1, content: "" }]);
@@ -20,19 +24,10 @@ const HomePage = () => {
     setTextAreas(textAreas.filter(t => t.id !== id));
   };
 
-  const handleChange = (e, id) => {
-    const updatedTextAreas = textAreas.map(t => {
-      if (t.id === id) {
-        return { ...t, content: e.target.value };
-      }
-      return t;
-    });
-    setTextAreas(updatedTextAreas);
-  };
 
-  useEffect(() => {
-    axios.post("/data/note.json", { note: textAreas });
-  }, [textAreas]);
+  // useEffect(() => {
+  //   axios.post("/data/note.json", { note: textAreas });
+  // }, [textAreas]);
 
   return (
     <div style={{ backgroundColor: '#333', height: '100vh' }}>
@@ -44,7 +39,6 @@ const HomePage = () => {
           <textarea 
             style={{ padding: '20px', width: '2500px', height: '234px' }} 
             value={t.content}
-            onChange={e => handleChange(e, t.id)}
           />
         </div>
       ))}
