@@ -2,11 +2,11 @@
     "note": [
       {
         "id": 1,
-        "content": "Hello"
+        "content": "Hello\nworld"
       },
       {
         "id": 2,
-        "content": "World"
+        "content": "OMG\nThis is so cool"
       }
     ]
   }

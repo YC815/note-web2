@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-import db from '../data/note.json'
+import axios from 'axios';
+// import db from '../data/note.json'
 
 const HomePage = () => {
   const [textAreas, setTextAreas] = useState([
@@ -9,12 +9,12 @@ const HomePage = () => {
 
   // console.log(db.note)
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   axios.get("/data/note.json").then(res => {
-  //     setTextAreas(res.data.note);
-  //   });
-  // }, []);
+    axios.get("/api/main").then(res => {
+      setTextAreas(res.data.note);
+    });
+  }, []);
 
   const addTextArea = () => {
     setTextAreas([...textAreas, { id: textAreas.length + 1, content: "" }]);
@@ -24,10 +24,10 @@ const HomePage = () => {
     setTextAreas(textAreas.filter(t => t.id !== id));
   };
 
-
-  // useEffect(() => {
-  //   axios.post("/data/note.json", { note: textAreas });
-  // }, [textAreas]);
+  const textAreaChangeHandler = (e) => {
+    
+    axios.post("/api/main", { note: textAreas });
+  }
 
   return (
     <div style={{ backgroundColor: '#333', height: '100vh' }}>
@@ -39,6 +39,7 @@ const HomePage = () => {
           <textarea 
             style={{ padding: '20px', width: '2500px', height: '234px' }} 
             value={t.content}
+            onChange={ textAreaChangeHandler }
           />
         </div>
       ))}
