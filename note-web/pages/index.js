@@ -39,9 +39,9 @@ const HomePage = () => {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    console.log("ta:", textAreas);
-  }, [textAreas]);
+  /* useEffect(() => { */
+  /*   console.log("ta:", textAreas); */
+  /* }, [textAreas]); */
 
   return (
     <div style={{ backgroundColor: "#333", height: "100vh" }}>
